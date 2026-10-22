@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Muhammad Arsal — Web Developer and BS Computer Science student. Explore my skills, projects, and services.">
+  <title>Muhammad Arsal | Web Developer</title>
+  <style>
+    :root {
+      --bg: #08090c;
+      --panel: #111319;
+      --panel-2: #171a22;
+      --text: #f5f5f5;
+      --muted: #a9afbd;
+      --gold: #d7b568;
+      --gold-light: #f2d99b;
+      --line: rgba(255,255,255,.10);
+      --radius: 20px;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+    body {
+      background: radial-gradient(ellipse at 80% 0%, rgba(215,181,104,.10), transparent 32%), var(--bg);
+      color: var(--text); font-family: Inter, "Segoe UI", Arial, sans-serif; line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+    .topbar { position: sticky; top: 0; z-index: 50; background: rgba(8,9,12,.88); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-size: 1.15rem; font-weight: 800; letter-spacing: -.04em; }
+    .brand span { color: var(--gold); }
+    .nav-links { display: flex; gap: 25px; align-items: center; color: var(--muted); font-size: .92rem; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--gold-light); }
+    .menu-btn { display: none; border: 1px solid var(--line); color: var(--text); background: var(--panel); border-radius: 10px; padding: 8px 12px; cursor: pointer; }
+    .hero { min-height: 82vh; display: grid; grid-template-columns: 1.3fr .7fr; align-items: center; gap: 55px; padding-top: 72px; padding-bottom: 75px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--gold-light); border: 1px solid rgba(215,181,104,.3); background: rgba(215,181,104,.07); padding: 7px 13px; border-radius: 999px; font-size: .83rem; margin-bottom: 22px; }
+    .eyebrow:before { content: ""; width: 7px; height: 7px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 14px var(--gold); }
+    h1 { font-size: clamp(2.8rem, 6vw, 5.4rem); line-height: 1.06; letter-spacing: -.065em; margin-bottom: 20px; }
+    .gold { color: var(--gold); }
+    .hero h2 { font-size: clamp(1.15rem, 2.3vw, 1.55rem); font-weight: 550; color: #e1e3e9; margin-bottom: 18px; }
+    .hero p, .section-intro { color: var(--muted); max-width: 660px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 29px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 12px 19px; border-radius: 12px; border: 1px solid var(--line); font-weight: 700; transition: transform .2s, background .2s, border-color .2s; cursor: pointer; }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary { background: var(--gold); color: #111; border-color: var(--gold); }
+    .btn-primary:hover { background: var(--gold-light); }
+    .btn-secondary { background: rgba(255,255,255,.03); }
+    .hero-card { border: 1px solid rgba(215,181,104,.25); border-radius: 28px; padding: 30px; background: linear-gradient(145deg, rgba(215,181,104,.10), rgba(255,255,255,.025) 45%, rgba(255,255,255,.015)); box-shadow: 0 24px 80px rgba(0,0,0,.28); position: relative; overflow: hidden; }
+    .hero-card::before {
+  content: "";
+  display: grid;
+  place-items: center;
+  height: 190px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #1b1d24, #0c0d11);
+  color: var(--gold);
+  font: 800 4rem/1 Consolas, monospace;
+  border: 1px solid var(--line);
+  text-shadow: 0 0 28px rgba(215,181,104,.25);
+}
+   
+.profile-photo {
+  width: 100%;
+  max-width: 280px;
+  height: 320px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  margin: 0 auto 24px;
+  border-radius: 24px;
+  border: 2px solid var(--gold);
+  box-shadow: 0 12px 35px rgba(215, 181, 104, 0.18);
+}
+
+    .card-caption { margin-top: 22px; color: var(--muted); font-size: .92rem; }
+    .quick-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 20px; }
+    .stat { padding: 13px 10px; background: rgba(0,0,0,.18); border: 1px solid var(--line); border-radius: 13px; text-align: center; }
+    .stat strong { display: block; color: var(--gold-light); font-size: 1rem; }
+    .stat span { display: block; color: var(--muted); font-size: .72rem; }
+    section.content-section { padding: 90px 0; border-top: 1px solid rgba(255,255,255,.045); }
+    .section-heading { margin-bottom: 35px; }
+    .section-kicker { color: var(--gold); text-transform: uppercase; letter-spacing: .17em; font-weight: 800; font-size: .76rem; margin-bottom: 8px; }
+    h2.section-title { font-size: clamp(2rem, 4vw, 3.1rem); letter-spacing: -.045em; line-height: 1.15; margin-bottom: 13px; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: stretch; }
+    .panel { padding: 27px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); }
+    .panel p { color: var(--muted); }
+    .detail-list { display: grid; gap: 15px; }
+    .detail { display: flex; gap: 14px; align-items: flex-start; }
+    .detail-icon { flex: 0 0 39px; height: 39px; display: grid; place-items: center; color: var(--gold); background: rgba(215,181,104,.10); border-radius: 12px; }
+    .detail strong { display: block; margin-bottom: 2px; }
+    .detail span { color: var(--muted); font-size: .92rem; }
+    .skills-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 15px; }
+    .skill { padding: 22px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; transition: .2s; }
+    .skill:hover, .project:hover, .service:hover { transform: translateY(-5px); border-color: rgba(215,181,104,.45); }
+    .skill .symbol { color: var(--gold); font: 800 1.25rem Consolas, monospace; margin-bottom: 12px; }
+    .skill h3 { font-size: 1rem; margin-bottom: 5px; }
+    .skill p { color: var(--muted); font-size: .85rem; }
+    .note { color: var(--muted); font-size: .88rem; margin-top: 18px; }
+    .projects-grid, .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .project, .service { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: .2s; }
+    .project-art { height: 155px; display: grid; place-items: center; background: radial-gradient(circle at 30% 20%, rgba(215,181,104,.22), transparent 35%), linear-gradient(135deg, #20232c, #0d0f14); color: var(--gold); font: 800 2rem Consolas, monospace; border-bottom: 1px solid var(--line); }
+    
+.project-body, .service { padding: 23px; }
+
+.project {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.project-body .tags {
+  margin-top: auto;
+}
+
+
+.project-body .tags {
+margin-top: 0;
+}
+
+.project-links {
+  margin-top: 18px;
+}
+
+  .project-body p, .service p { color: var(--muted); font-size: .92rem; margin-top: 8px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 17px; }
+    .tag { padding: 4px 9px; border-radius: 999px; border: 1px solid var(--line); color: #d6d8df; font-size: .74rem; }
+    .service-icon { width: 45px; height: 45px; border-radius: 13px; display: grid; place-items: center; background: rgba(215,181,104,.10); color: var(--gold); font-size: 1.3rem; margin-bottom: 17px; }
+    .education { display: grid; grid-template-columns: 70px 1fr; gap: 18px; max-width: 800px; }
+    .edu-mark { width: 60px; height: 60px; display: grid; place-items: center; border-radius: 17px; background: rgba(215,181,104,.12); color: var(--gold); font-size: 1.4rem; }
+    .education h3 { font-size: 1.2rem; }
+    .education .muted { color: var(--muted); }
+    .contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 25px; }
+    .contact-links { display: grid; gap: 13px; margin-top: 20px; }
+    .contact-link { padding: 14px; border-radius: 13px; background: rgba(255,255,255,.025); border: 1px solid var(--line); }
+    .contact-link small { display: block; color: var(--muted); }
+    form { display: grid; gap: 13px; }
+    label { font-size: .86rem; color: #e5e5e8; }
+    input, textarea { width: 100%; padding: 13px 14px; margin-top: 6px; border: 1px solid var(--line); background: #0a0b0f; color: var(--text); border-radius: 11px; outline: none; }
+    input:focus, textarea:focus { border-color: var(--gold); }
+    textarea { min-height: 130px; resize: vertical; }
+    .form-note { color: var(--muted); font-size: .8rem; }
+    footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); }
+    .footer-row { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+    .to-top { color: var(--gold); }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    @media (max-width: 850px) {
+      .hero { grid-template-columns: 1fr; gap: 32px; min-height: auto; padding-top: 65px; }
+      .hero-card { max-width: 520px; }
+      .skills-grid { grid-template-columns: repeat(2,1fr); }
+      .projects-grid, .services-grid { grid-template-columns: repeat(2,1fr); }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .container { width: min(100% - 28px, var(--max)); }
+      .nav { min-height: 67px; }
+      .menu-btn { display: inline-flex; }
+      .nav-links { display: none; position: absolute; top: 67px; left: 0; right: 0; padding: 18px 22px 22px; background: #0c0d11; border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; gap: 14px; }
+      .nav-links.open { display: flex; }
+      .hero { padding-top: 52px; }
+      h1 { font-size: clamp(2.55rem, 13vw, 4rem); }
+      .hero-card { padding: 18px; }
+      .hero-card:before { height: 150px; }
+      section.content-section { padding: 65px 0; }
+      .about-grid, .projects-grid, .services-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+      .skill { padding: 17px; }
+      .panel { padding: 21px; }
+      .quick-stats { gap: 7px; }
+      .stat { padding: 11px 5px; }
+      .education { grid-template-columns: 50px 1fr; gap: 12px; }
+      .edu-mark { width: 46px; height: 46px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+    
+/* Align project cards and their buttons */
+.projects-grid {
+  align-items: stretch;
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.project-links {
+  margin-top: 18px;
+}
+ </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#home">MA<span>.</span></a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">☰ Menu</button>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a>
+        <a href="#projects">Projects</a><a href="#services">Services</a><a href="#education">Education</a><a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero" id="home">
+      <div class="reveal">
+        <div class="eyebrow">Available to learn, build & collaborate</div>
+        <h1>Hi, I'm<br><span class="gold">Muhammad Arsal</span></h1>
+        <h2>Web Developer <span class="gold">·</span> BS Computer Science Student</h2>
+        <p>I build modern, responsive, and user-friendly web experiences. I enjoy turning ideas into clean digital interfaces while continuously improving my development skills and exploring new technologies.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">Explore My Work ↗</a>
+          <a class="btn btn-secondary" href="#contact">Let's Connect</a>
+        </div>
+      </div>
+      <aside class="hero-card reveal" aria-label="Developer introduction card">
+        <img src="arsal-photo.png" alt="Muhammad Arsal - Web Developer" class="profile-photo">
+        <div class="card-caption"><strong class="gold">Hello, world!</strong><br>Curiosity, creativity, and code — the tools I use to bring ideas to life.</div>
+        <div class="quick-stats">
+          <div class="stat"><strong>Web</strong><span>Development</span></div>
+          <div class="stat"><strong>BS CS</strong><span>Student</span></div>
+          <div class="stat"><strong>Always</strong><span>Learning</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="content-section" id="about">
+      <div class="container">
+        <div class="section-heading reveal"><div class="section-kicker">A little about me</div><h2 class="section-title">Building for the <span class="gold">digital world.</span></h2><p class="section-intro">I'm Muhammad Arsal, a web developer and BS Computer Science student interested in thoughtful design, useful websites, and solving problems through technology.</p></div>
+        <div class="about-grid">
+          <article class="panel reveal">
+            <h3 style="margin-bottom:12px">My introduction</h3>
+            <p>I enjoy learning how websites work from the structure of a page to the details that make an interface easy to use. My goal is to keep growing as a developer, practice through real projects, and create web experiences that look good and work well across different screen sizes.</p>
+            <p style="margin-top:13px">I believe strong work comes from consistency, curiosity, and attention to detail. I'm always looking for opportunities to learn, collaborate, and improve.</p>
+          </article>
+          <article class="panel detail-list reveal">
+            <div class="detail"><div class="detail-icon">⌘</div><div><strong>Role</strong><span>Web Developer</span></div></div>
+            <div class="detail"><div class="detail-icon">🎓</div><div><strong>Education</strong><span>BS Computer Science (in progress)</span></div></div>
+            <div class="detail"><div class="detail-icon">✦</div><div><strong>Focus</strong><span>Responsive websites and user-friendly interfaces</span></div></div>
+            <div class="detail"><div class="detail-icon">↗</div><div><strong>Mindset</strong><span>Learning, improving, and building consistently</span></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="skills">
+      <div class="container">
+        <div class="section-heading reveal"><div class="section-kicker">What I work with</div><h2 class="section-title">Technical <span class="gold">skills.</span></h2><p class="section-intro">Add or remove skills here to accurately reflect the technologies you have learned and used.</p></div>
+        
+<div class="skills-grid">
+  <article class="skill reveal">
+    <div class="symbol">&lt;/&gt;</div>
+    <h3>HTML5</h3>
+    <p>Semantic HTML and webpage structure</p>
+  </article>
+
+  <article class="skill reveal">
+    <div class="symbol">#</div>
+    <h3>CSS3</h3>
+    <p>Webpage styling, layouts and visual design</p>
+  </article>
+
+  <article class="skill reveal">
+    <div class="symbol">JS</div>
+    <h3>JavaScript</h3>
+    <p>Currently learning interactive web features</p>
+  </article>
+
+  <article class="skill reveal">
+    <div class="symbol">RWD</div>
+    <h3>Responsive Design</h3>
+    <p>Layouts for mobile, tablet and desktop</p>
+  </article>
+
+  <article class="skill reveal">
+    <div class="symbol">UI</div>
+    <h3>UI Design</h3>
+    <p>Clean layouts, typography and spacing</p>
+  </article>
+
+  <article class="skill reveal">
+    <div class="symbol">Git</div>
+    <h3>Git &amp; GitHub</h3>
+    <p>Version control and project sharing</p>
+  </article>
+</div>
+
+        <p class="note">Important: Keep only the skills you can confidently discuss or demonstrate. If you're still learning a technology, describe it as “Currently learning”.</p>
+      </div>
+    </section>
+
+    <section class="content-section" id="projects">
+      <div class="container">
+        <div class="section-heading reveal"><div class="section-kicker">Selected work</div><h2 class="section-title">Projects & <span class="gold">experiments.</span></h2><p class="section-intro">These are starter project ideas. Replace them with your real work, screenshots, and working links as you complete each project.</p></div>
+        <div class="projects-grid">
+          
+
+<article class="project reveal">
+  <div class="project-art">&lt;WEB /&gt;</div>
+  <div class="project-body">
+    <h3>Personal Portfolio Website</h3>
+    <p>A responsive personal portfolio showcasing my introduction, technical skills, projects and contact information.</p>
+    <div class="tags">
+      <span class="tag">HTML5</span>
+      <span class="tag">CSS3</span>
+      <span class="tag">Responsive Design</span>
+    </div>
+    <div class="project-links">
+      <a href="#contact" class="btn btn-primary">Contact Me</a>
+      <a href="#skills" class="btn btn-secondary">My Skills</a>
+    </div>
+  </div>
+</article>
+
+<article class="project reveal">
+  <div class="project-art">✦ BRAND</div>
+  <div class="project-body">
+    <h3>Business Landing Page</h3>
+    <p>A business website concept designed to present services, highlight key information and help visitors get in touch.</p>
+    <div class="tags">
+      <span class="tag">HTML</span>
+      <span class="tag">CSS</span>
+      <span class="tag">UI Design</span>
+    </div>
+    <div class="project-links">
+      <a href="#contact" class="btn btn-primary">Contact Me</a>
+      <a href="#skills" class="btn btn-secondary">My Skills</a>
+    </div>
+  </div>
+</article>
+
+<article class="project reveal">
+  <div class="project-art">{ APP }</div>
+  <div class="project-body">
+    <h3>JavaScript Practice Project</h3>
+    <p>A learning project for practising form handling, user interactions and basic JavaScript functionality.</p>
+    <div class="tags">
+      <span class="tag">JavaScript</span>
+      <span class="tag">Forms</span>
+      <span class="tag">Practice</span>
+    </div>
+    <div class="project-links">
+      <a href="#contact" class="btn btn-primary">Contact Me</a>
+      <a href="#skills" class="btn btn-secondary">My Skills</a>
+    </div>
+  </div>
+</article>
+
+        </div>
+        <p class="note">These cards are examples, not claims of completed client work. Update their descriptions and add demo links when your projects are ready.</p>
+      </div>
+    </section>
+
+    <section class="content-section" id="services">
+      <div class="container">
+        <div class="section-heading reveal"><div class="section-kicker">How I can help</div><h2 class="section-title">Services I aim to <span class="gold">provide.</span></h2><p class="section-intro">Present services that match your current ability. You can expand this list as your experience grows.</p></div>
+        <div class="services-grid">
+          <article class="service reveal"><div class="service-icon">▣</div><h3>Website Development</h3><p>Building clear and responsive web pages for personal portfolios and small projects.</p></article>
+          <article class="service reveal"><div class="service-icon">✧</div><h3>Website Styling</h3><p>Improving layout, typography, spacing, and visual consistency with CSS.</p></article>
+          <article class="service reveal"><div class="service-icon">↗</div><h3>Website Updates</h3><p>Helping update page content and make existing layouts easier to use.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="education">
+      <div class="container">
+        <div class="section-heading reveal"><div class="section-kicker">My learning journey</div><h2 class="section-title">Education & <span class="gold">growth.</span></h2></div>
+        <article class="panel education reveal">
+          <div class="edu-mark">🎓</div>
+          <div><h3>BS Computer Science</h3><p class="muted">Currently pursuing</p><p style="margin-top:10px;color:var(--muted)">Studying computer science while developing practical web development skills through learning, experimentation, and personal projects.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section" id="contact">
+      <div class="container">
+        <div class="section-heading reveal"><div class="section-kicker">Get in touch</div><h2 class="section-title">Let's create something <span class="gold">useful.</span></h2><p class="section-intro">Have a project idea, an opportunity, or want to connect? Send a message using the form below.</p></div>
+        <div class="contact-grid">
+          <article class="panel reveal">
+            <h3>Contact details</h3>
+            <p style="margin-top:8px"><p style="margin-top:8px">Have a question or project idea? Feel free to contact me through email or WhatsApp.</p></p>
+            
+<div class="contact-links">
+  <a class="contact-link" href="mailto:arsaljathoul@gmail.com">
+    <small>✉ Email Me</small>
+    <strong>arsaljathoul@gmail.com</strong>
+  </a>
+
+  <a class="contact-link"
+     href="https://wa.me/923290950886"
+     target="_blank"
+     rel="noopener noreferrer">
+    <small>☏ WhatsApp</small>
+    <strong>Chat with me on WhatsApp ↗</strong>
+  </a>
+</div>
+
+          </article>
+          <article class="panel reveal">
+            <form id="contactForm">
+              <label>Your name<input id="senderName" name="name" type="text" placeholder="Enter your name" required></label>
+              <label>Your email<input id="senderEmail" name="email" type="email" placeholder="you@example.com" required></label>
+              <label>Your message<textarea id="senderMessage" name="message" placeholder="Tell me about your project..." required></textarea></label>
+              <button class="btn btn-primary" type="submit">Prepare Email ↗</button>
+              <p class="form-note">This form opens your email app with a prepared message. It does not send or store messages by itself.</p>
+            </form>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row"><p>© <span id="year"></span> Muhammad Arsal. Built with care.</p><a class="to-top" href="#home">Back to top ↑</a></div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    document.getElementById('contactForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const name = document.getElementById('senderName').value.trim();
+      const email = document.getElementById('senderEmail').value.trim();
+      const message = document.getElementById('senderMessage').value.trim();
+      // Replace this placeholder with your real email address before using the form.
+      
+const recipient = 'arsaljathoul@gmail.com';
+const subject = encodeURIComponent('Portfolio contact from ' + name);
+const body = encodeURIComponent(
+  'Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message
+);
+
+window.location.href = 'mailto:' + recipient + '?subject=' + subject + '&body=' + body;
+});
+
+  </script>
+</body>
+</html>
